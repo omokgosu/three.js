@@ -1,21 +1,41 @@
 import { Link } from "react-router-dom"
+import styled from "styled-components";
 
 export default function Header(){
 
     return(
-        <header className="header">
-            <h2>헤더</h2>
-            <ul>
+        <HeaderLayout>
+            <HeaderLogo>three.js</HeaderLogo>
+            <HeaderNav>
                 <li>
-                    <Link to='/'>메인</Link>
+                    <StyledLink to='/'>메인</StyledLink>
                 </li>
                 <li>
-                    <Link to='/circle'>원</Link>
+                    <StyledLink to='/circle'>원</StyledLink>
                 </li>
                 <li>
-                    <Link to='/square'>사각형</Link>
+                    <StyledLink to='/square'>사각형</StyledLink>
                 </li>
-            </ul>
-        </header>
+            </HeaderNav>
+        </HeaderLayout>
     )
 }
+
+const HeaderLayout = styled.header`
+    display: flex;
+`
+const HeaderLogo = styled.h1`
+    
+`;
+const HeaderNav = styled.ul`
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+`
+const StyledLink = styled(Link)`
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+`;
