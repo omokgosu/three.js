@@ -1,20 +1,29 @@
-import { Routes , Route } from "react-router-dom";
+import React, { Suspense} from 'react';
+import { Canvas } from '@react-three/fiber'
+import './style.css'
+import { OrbitControls, PerspectiveCamera} from '@react-three/drei'
 
-import Header from "./components/header";
-import MainPage from "./pages/mainPage/MainPage";
-import CirclePage from "./pages/circlePage/circlePage";
-import SquarePage from './pages/squarePage/squarePage';
+function CarShow(){
+  return (
+    <>
+      <OrbitControls target={[0, 0.35 ,0]} maxPolarAngle={1.45} />
+    
+      <PerspectiveCamera makeDefault fov={50} position={[3,2,5]}/>
+      <mesh>
+        <boxGeometry args={[1,1,1]}/>
+        <meshBasicMaterial color={"red"} />
+      </mesh>
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="wrap" id="canvas-contianer">
-      <Header />
-      <Routes>
-          <Route path="/" element={<MainPage />}></Route>
-          <Route path="/circle" element={<CirclePage />}></Route>
-          <Route path="/square" element={<SquarePage />}></Route>
-      </Routes>
-    </div>
+    <Suspense fallback={null}>
+      <Canvas shadows>
+        <CarShow />
+      </Canvas>
+    </Suspense>
   );
 }
 
